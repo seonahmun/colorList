@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -84,12 +85,22 @@ public class ColorApiController {
 		Connection connection = DriverManager.getConnection(dbUrl, username, password);
 		
 		//insert
-		String query = "INSERT INTO colorSelect(rgbCode, datetime) VALUES(" + rgbCode + "," + datetime + ");";
-		Statement statement = connection.createStatement();
+		String query = "INSERT INTO colorSelect(rgbCode, datetime) VALUES(?,?);";
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
+		//이름에 홑따옴표가 들어가는 경우 직접입력하는 것보다 테이블에서 가져오기 때문에 데이터가 정확해진다.
 		
-		int result = statement.executeUpdate(query);
+		//preparedStatement.set타입'?에 올 타입'(첫번째=1 두번째=2 ..., 첫번째 ?에 올 값 두번째 ?에 올 값 ...
+		preparedStatement.setString(1, rgbCode);
+		preparedStatement.setString(2, datetime);
 		
-		statement.close();
+		//executeUpdate(String sql)
+		//조회문(select, show 등)을 제외한 create, drop, insert, delete, update 등등 문을 처리할 때 사용한다.
+		preparedStatement.executeUpdate();
+		
+		//참고)executeQuery(String sql)
+		//조회문(select, show 등)을 실행할 목적으로 사용한다.
+
+		preparedStatement.close();
 		connection.close();
 				
 		return map;
