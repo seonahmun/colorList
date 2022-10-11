@@ -1,5 +1,12 @@
 package com.kopo.colorList1004;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 //Controller 어노테이션 붙여준다.
@@ -92,6 +99,42 @@ public class ColorMainController {
 		model.addAttribute("colorList", colorList);
 				
 		return "main";
+	}
+	
+	@RequestMapping(value = "/colorLog")
+	public String colorLog(Model model) throws URISyntaxException, SQLException {
+		
+		//db연결
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+				
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+		
+		Connection connection = DriverManager.getConnection(dbUrl, username, password);
+		
+		//ArrayList 생성
+		ArrayList<Color> colorList = new ArrayList<Color>();
+		
+		//select
+		String query = "SELECT * FROM colorSelect" + " WHERE ?;";
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, 1);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while(resultSet.next()) {
+			int idx = resultSet.getInt("idx");
+			String rgbCode = resultSet.getString("rgbCode");
+			String datetime = resultSet.getString("datetime");
+			colorList.add(new Color(idx, rgbCode, datetime));
+		}
+		
+		preparedStatement.close();
+		connection.close();
+		
+		model.addAttribute("colorList",colorList);
+		
+		return "colorLog";
 	}
 
 }
