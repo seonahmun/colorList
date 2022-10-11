@@ -102,7 +102,7 @@ public class ColorMainController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/colorLog", method = RequestMethod.GET)
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
 	public String colorLog(Model model) throws URISyntaxException, SQLException {
 		
 		//db연결
@@ -154,7 +154,7 @@ public class ColorMainController {
 		
 		model.addAttribute("colorList", colorList);
 		
-		return "NewFile";
+		return "colorLog";
 	}
 
 }

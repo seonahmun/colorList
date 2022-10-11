@@ -11,7 +11,7 @@
 <body>
 	<header class="page-header">
 		<a href="/" ><h3>&#128204; 색상선택</h3></a>
-		<a href="/colorLog"><h3>&#128203; 히스토리</h3></a>
+		<a href="/history"><h3>&#128203; 히스토리</h3></a>
 	</header>
 
 	<div class="color-select">
