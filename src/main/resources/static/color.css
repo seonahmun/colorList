@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* '*'은 모든 태그를 의미한다 */
+*{
+	/* margin: 바깥쪽여백, padding: 안쪽여백 
+	둘다 0값을 주어 모든 여백을 없앴다 */
+	margin: 0;
+	padding: 0;
+}
+.color-select ul{
+	/* ul 점 없애는 속성 */
+	list-style: none;
+	/* 가운데정렬 맞추는 속성 */
+	text-align: center;
+
+}
+.color-select ul li{
+
+}
+.color-select li{
+	display: inline-block;
+	box-sizing: border-box;
+	width: 25%;
+	padding: 60px 10px;
+	float: left;
+}
+
+.page-header{
+	background: black;
+	padding: 20px 10px;
+}
+
+.page-header a{
+	color: #fff;
+	/* a태그 밑줄 없애는 속성 */
+	text-decoration: none;
+	/* inline, block 동시 적용, 여러개의 엘리먼트를 한줄에 원하는 너비 만큼 배치 가능
+	inline엘리먼트: 전후 줄바꿈 없이 한 줄에 다른 엘리먼트들과 나란히 배치
+	block엘리먼트: 전후 줄바꿈이 들어가 다른 엘리먼트들을 다른줄로 밀어내고 혼자 한줄을 차지 */
+	display: inline-block;
+	width: 12%;
+	text-align: center;
+	/* 박스의 크기를 어떤 것을 기준으로 계산할지 정하는 속성
+	content-box: 콘텐츠 영역을 기준으로 크기를 정한다
+	border-box: 테두리를 기준으로 크기를 정한다
+	initial: 기본값으로 설정
+	inherit: 부모 요소의 속성값을 상속받는다 */
+	box-sizing: border-box;
+}

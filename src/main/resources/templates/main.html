@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Color List</title>
+<link rel="stylesheet" href="../color.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+/* 주체가 되는 부모속성의 이벤트를 물려받아 지정 선택자에게 이벤트를 연결할 수 있다 */
+$(document).on('click', '.color-select li', function(){
+	
+	/* 이벤트발생 요소의 태그 표시 */
+	console.log(this);
+	/* 이벤트발생 요소의 정보 표시 */
+	console.log($(this));
+	
+	console.log($(this).find('span.color-element').text());
+	
+	
+});
+</script>
+</head>
+<body>
+	<header class="page-header">
+		<a href="/" ><h3>&#128204; 색상선택</h3></a>
+		<a href="/" ><h3>&#128203; 히스토리</h3></a>
+	</header>
+
+	<div class="color-select">
+		<!-- 문자열 합치기: 양끝에 | 붙이기 -->
+		<ul th:each="color: ${colorList}">
+			<li th:style="|background-color: rgb(${color.red},${color.green},${color.blue});|">
+				<span class="color-element" th:text="${color.rgbColor}"></span>
+				<br>
+				<span th:text="|(${color.red},${color.green},${color.blue})|"></span>
+			</li>
+		</ul>
+	</div>
+
+
+</body>
+</html>

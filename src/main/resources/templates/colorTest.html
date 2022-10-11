@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>colorList Test</title>
+<link rel="stylesheet" href="../color.css">
+</head>
+<body>
+
+
+<div class="content">
+	<!-- 문자열 합치기: 양끝에 | 붙이기 -->
+	<ul th:each="color: ${colorList}">
+		<li th:style="|background-color: rgb(${color.red},${color.green},${color.blue});|">
+			<span th:text="${color.rgbColor}"/>
+			<br>
+			<span th:text="|(${color.red},${color.green},${color.blue})|"/>
+		</li>
+	</ul>
+</div>
+
+
+</body>
+</html>
