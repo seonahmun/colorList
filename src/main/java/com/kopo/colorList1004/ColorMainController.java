@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 //Controller 어노테이션 붙여준다.
@@ -101,7 +102,7 @@ public class ColorMainController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/colorLog")
+	@RequestMapping(value = "/colorLog", method = RequestMethod.GET)
 	public String colorLog(Model model) throws URISyntaxException, SQLException {
 		
 		//db연결
