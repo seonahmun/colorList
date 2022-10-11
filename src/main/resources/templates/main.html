@@ -20,7 +20,7 @@ $(document).on('click', '.color-select li', function(){
 		url: '/colorSelect',
 		data: {'rgbCode' : $(this).find('span.color-element').text()},
 		success: function(data){
-			location.href = '/'
+			location.href = '/';
 		}
 	});
 });
