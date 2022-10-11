@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ColorApiController {
 	
 	//create
-	@GetMapping("/createTable")
+	@RequestMapping("/createTable")
 	public Map<String, String> createTable(Model model) throws URISyntaxException, SQLException, JsonProcessingException {
 		
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
