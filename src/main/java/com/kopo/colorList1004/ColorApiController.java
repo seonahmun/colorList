@@ -32,11 +32,11 @@ public class ColorApiController {
 		System.out.println("username: " + username);
 		System.out.println("password: " + password);
 		
-		String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 		
 		Connection connection = DriverManager.getConnection(dbUrl, username, password);
 		
-		String query = "CREATE TABLE colorSelect(idx AUTO_INCREMENT PRIMARY KEY, rgbCode VARCHAR(12), datetime VARCHAR(20));";
+		String query = "CREATE TABLE colorSelect(idx serial PRIMARY KEY, rgbCode VARCHAR(12), datetime VARCHAR(20));";
 		Statement statement = connection.createStatement();
 		int result = statement.executeUpdate(query);
 		
