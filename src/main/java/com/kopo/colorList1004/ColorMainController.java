@@ -115,26 +115,45 @@ public class ColorMainController {
 		Connection connection = DriverManager.getConnection(dbUrl, username, password);
 		
 		//ArrayList 생성
-		ArrayList<Color> colorList = new ArrayList<Color>();
+//		ArrayList<Color> colorList = new ArrayList<Color>();
 		
-		//select
+		//select 자꾸 오류남...
+//		String query = "SELECT * FROM colorSelect" + " WHERE ?;";
+//		PreparedStatement preparedStatement = connection.prepareStatement(query);
+//		preparedStatement.setInt(1, 1);
+//		ResultSet resultSet = preparedStatement.executeQuery();
+//		while(resultSet.next()) {
+//			int idx = resultSet.getInt("idx");
+//			String rgbCode = resultSet.getString("rgbCode");
+//			String datetime = resultSet.getString("datetime");
+//			colorList.add(new Color(idx, rgbCode, datetime));
+//		}
+//		
+//		preparedStatement.close();
+//		connection.close();
+//		
+//		model.addAttribute("colorList",colorList);
+//		
+//		return "colorLog";
+		
 		String query = "SELECT * FROM colorSelect" + " WHERE ?;";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setInt(1, 1);
 		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		StringBuffer colorList = new StringBuffer();
 		while(resultSet.next()) {
 			int idx = resultSet.getInt("idx");
 			String rgbCode = resultSet.getString("rgbCode");
 			String datetime = resultSet.getString("datetime");
-			colorList.add(new Color(idx, rgbCode, datetime));
+			String rowString = "<li style='background-color: " + rgbCode + ";'>" + rgbCode + "<br />" + datetime + "</li>";
+			colorList.append(rowString);
 		}
-		
 		preparedStatement.close();
 		connection.close();
 		
-		model.addAttribute("colorList",colorList);
-		
-		return "colorLog";
+		model.addAttribute("colorList", colorList);
+		return "";
 	}
 
 }

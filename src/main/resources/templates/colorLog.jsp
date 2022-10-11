@@ -13,13 +13,8 @@
 	</header>
 
 	<div class="color-select">
-		<!-- 문자열 합치기: 양끝에 | 붙이기 -->
-		<ul th:each="color: ${colorList}">
-			<li th:style="|background-color: ${color.rgbColor};|">
-				<span class="color-element" th:text="${color.rgbColor}"></span>
-				<br>
-				<span th:text="${color.datetime}"></span>
-			</li>
+		<ul>
+		${colorList}
 		</ul>
 	</div>
 
