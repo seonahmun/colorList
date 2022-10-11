@@ -136,9 +136,8 @@ public class ColorMainController {
 //		
 //		return "colorLog";
 		
-		String query = "SELECT * FROM colorSelect" + " WHERE ?;";
+		String query = "SELECT * FROM colorSelect;";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setInt(1, 1);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		
 		StringBuffer colorList = new StringBuffer();
@@ -153,6 +152,7 @@ public class ColorMainController {
 		connection.close();
 		
 		model.addAttribute("colorList", colorList);
+		
 		return "colorLog";
 	}
 
