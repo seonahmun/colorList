@@ -22,7 +22,7 @@ public class ColorApiController {
 	
 	//create
 	@GetMapping("/createTable")
-	public String createTable(Model model) throws URISyntaxException, SQLException, JsonProcessingException {
+	public Map<String, String> createTable(Model model) throws URISyntaxException, SQLException, JsonProcessingException {
 		
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 		
@@ -44,7 +44,7 @@ public class ColorApiController {
 		connection.close();
 		
 		//map 객체 선언
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("message", "success");
 		
@@ -57,7 +57,7 @@ public class ColorApiController {
 		System.out.println(mapJSON);
 		
 		
-		return mapJSON;
+		return map;
 	}
 	
 	//insert
