@@ -153,7 +153,7 @@ public class ColorMainController {
 		connection.close();
 		
 		model.addAttribute("colorList", colorList);
-		return "";
+		return "colorLog";
 	}
 
 }
